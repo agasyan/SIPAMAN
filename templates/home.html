@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Selamat Datang{% endblock %}
+{% block other_style %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+  <div class="container">
+    Urutan Antrean Sekarang:
+    <h1 id="#noantre">{{ noantre }}</h1>
+    <p class="important">
+  </div>
+{% endblock %}

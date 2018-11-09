@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Request Antrian{% endblock %}
+{% block other_style %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+  <div class="container">
+    <h1>Request Antrian</h1>
+    <form id="form-lacak-tiket"style="text-align: center" method="POST" action="/kirim-request">
+      Username:
+      <br>
+      <input type="text" name="username" value="rachmat.ridwan">
+      Password:
+      <br>
+      <input type="password" name="password">
+      <button type="submit" class="btn btn-prim" name="submit" id="submit"/>Submit</button>
+    </form>
+    Masukan yang kamu berikan:{{ masukan }}
+  </div>
+{% endblock %}
