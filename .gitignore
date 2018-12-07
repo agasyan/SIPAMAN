@@ -292,3 +292,9 @@ local.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+# No antrean orang
+antrean/*
+noantre
+
+# Sandboxing folders
+others/
