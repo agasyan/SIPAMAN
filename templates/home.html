@@ -9,8 +9,43 @@
 {% block content %}
   <div class="container">
     Urutan Antrean Sekarang:
-    <h1 id="#noantre">{{ noantre }}</h1>
+    <div class="id-container">
+      <h1 id="noantre">{{ noantre }}</h1>
+    </div>
+    <p>Status kamar mandi:</p>
+    <div class="id-container">
+      <h2 id="status-kosong">{{ status_kosong }}</h2>
+    </div>
+    <div id="pbar">
+      <div id="inner-pbar"></div>
+    </div>
     <p class="important">
     <a class="btn btn-primary" href="/request" />Request Antrean</a>
   </div>
+{% endblock %}
+{% block other_script %}
+<script>
+(function($, window, document, undefined) {
+  var update = function(){
+    console.log("TEST")
+    $('#inner-pbar').animate({'width':'100%'}, {'easing':'linear', 'duration':4500,'complete':function(){$(this).css('width', '0%');}})
+    $.ajax({
+      type: "POST",
+      url: "/no-antre",
+      success: function(data){
+        $('#noantre').text(data)
+     }
+    });
+    $.ajax({
+      type: "POST",
+      url: "/status-kosong",
+      success: function(data){
+        $('#status-kosong').text(data)
+     }
+    });
+  };
+  update()
+  setInterval(update, 5000);
+})(jQuery, window, document);
+</script>
 {% endblock %}

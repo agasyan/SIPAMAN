@@ -5,3 +5,73 @@
 header > .nav {
 	background-color: #e2e2e2;
 }
+
+html, body {
+    font-size: 24px;
+}
+
+.container {
+    text-align: center;
+}
+
+#noantre {
+    font-size: 7em;
+    color: cornflowerblue;
+    background: -webkit-linear-gradient(#2383b8, #052d42);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.id-container {
+    width: fit-content;
+    background: linear-gradient(to right, #76cfff, #f2fcfe);
+    display: block;
+    margin: 0.1em auto;
+    padding: 0 2em;
+    padding-bottom: 0.1em;
+    border-radius: 5em;
+    border: 2px solid #78d0ff;
+}
+
+p.important {
+    margin-top: 2em;
+}
+
+div#pbar {
+    width: calc(100% - 3em);
+    margin: 10px auto;
+    height: 6px;
+    display: block;
+    background-color: #ccc;
+}
+
+div#inner-pbar {
+    width: 0%;
+    height: 100%;
+    display: block;
+    background-color: #36aceb;
+}
+
+.container > p {
+    margin: 0.5em auto 1em;
+}
+
+@media only screen and (max-width:600px) {
+
+    html, body {
+        font-size: 16px;
+    }
+
+    #noantre {
+        font-size: 6.5em;
+}
+
+@media only screen and (max-width:400px) {
+
+    html, body {
+        font-size: 16px;
+    }
+
+    #noantre {
+        font-size: 3.5em;
+}

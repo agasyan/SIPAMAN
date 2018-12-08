@@ -12,7 +12,7 @@ def buat_antre_baru():
     daftar = os.listdir(p_antrean)
     antre_terakhir = 0
     if len(daftar) > 0:
-        antre_terakhir = int(daftar[-1])
+        antre_terakhir = int(sorted(daftar)[-1])
     antre_baru = str(antre_terakhir + 1).zfill(4)
     password = generate_random_number()
     with open(p_antrean + "//" + antre_baru, "w+") as buka:
@@ -49,6 +49,11 @@ def antrean_kini():
         for i in buka:
             return i
 
+def status_kosong_kini():
+    with open("status_kosong", "r") as buka:
+        for i in buka:
+            return "Kosong" if i == "True" else "Ditempati"
+
 @app.route("/request")
 def request_antrean(berhasil = True):
     no_antre, password = buat_antre_baru()
@@ -57,17 +62,33 @@ def request_antrean(berhasil = True):
 
 @app.route("/")
 def home():
-    return render_template('home.html', noantre = antrean_kini())
+    return render_template('home.html', noantre = antrean_kini(), status_kosong = status_kosong_kini())
 
-@app.route("/inkremenkan")
+@app.route("/no-antre", methods = ["POST"])
+def get_angka_antre():
+    return antrean_kini()
+
+@app.route("/status-kosong", methods = ["POST"])
+def get_status_kosong():
+    return status_kosong_kini()
+    
+#####
+#####  FITUR ADMIN
+#####
+
+@app.route("/admin")
+def admin():
+    return render_template('admin.html', noantre = antrean_kini(), status_kosong = status_kosong_kini())
+
+@app.route("/admin-inkremen")
 def inkremen_angka_web():
     inkremen_no_kini()
-    return redirect(url_for("home"))
+    return redirect(request.referrer)
 
-@app.route("/reset")
+@app.route("/admin-reset")
 def reset_angka_web():
     reset()
-    return redirect(url_for("home"))
+    return redirect(request.referrer)
     
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=80, debug=True)
